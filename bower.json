@@ -6,7 +6,7 @@
     "Michael Salgado <elesdoar@gmail.com>"
   ],
   "description": "Angular directive for Sly",
-  "main": "angular-sly-directive.j",
+  "main": "dist/angular-sly-directive.min.js",
   "keywords": [
     "angular",
     "sly",

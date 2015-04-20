@@ -14,7 +14,7 @@ module.exports = function (grunt) {
       },
       dist: {
         src: ['src/js/directive.js', 'services.js'],
-        dest: 'dist/js/angular-sly-directive.js'
+        dest: 'dist/js/<%= pkg.name %>.js'
       }
     },
     less: {
@@ -23,11 +23,20 @@ module.exports = function (grunt) {
       },
       dist: {
         files: {
-          'dist/css/angular-sly-directive.css': 'src/less/angular-sly-directive.less'
+          'dist/css/<%= pkg.name %>.css': 'src/less/<%= pkg.name %>.less'
         }
+      }
+    },
+    uglify: {
+      options: {
+        banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+      },
+      dist: {
+        src: 'dist/js/<%= pkg.name %>.js',
+        dest: 'dist/js/<%= pkg.name %>.min.js'
       }
     }
   });
 
-  grunt.registerTask('default', ['concat', 'less']);
+  grunt.registerTask('default', ['concat', 'less', 'uglify']);
 };
