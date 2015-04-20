@@ -1,0 +1,27 @@
+{
+  "name": "angular-sly-directive",
+  "version": "0.1.0",
+  "homepage": "https://github.com/elesdoar/angular-sly-directive",
+  "authors": [
+    "Michael Salgado <elesdoar@gmail.com>"
+  ],
+  "description": "Angular directive for Sly",
+  "main": "angular-sly-directive.j",
+  "keywords": [
+    "angular",
+    "sly",
+    "jquery"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "sly": "~1.4.4",
+    "jquery": "~2.1.3"
+  }
+}
