@@ -4,7 +4,7 @@
 
 var mod = angular.module('angular-sly-directive', []);
 
-mod.directive('angular-sly', function() {
+mod.directive('sly', function() {
   return {
     restrict: 'E',
     scope: {
