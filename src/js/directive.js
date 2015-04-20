@@ -70,6 +70,7 @@ mod.directive('sly', function($log) {
     activeClass:   'active',  // Class for active items and pages.
     disabledClass: 'disabled' // Class for disabled navigation elements.
   };
+  
   return {
     restrict: 'E',
     scope: {
