@@ -9,7 +9,7 @@ mod.directive('sly', function($log) {
     horizontal: false, // Switch to horizontal mode.
 
     // Item based navigation
-    itemNav:        null,  // Item navigation type. Can be: 'basic', 'centered', 'forceCentered'.
+    itemNav:        'basic',  // Item navigation type. Can be: 'basic', 'centered', 'forceCentered'.
     itemSelector:   '.angular-sly-slide',  // Select only items that match this selector.
     smart:          false, // Repositions the activated item to help with further navigation.
     activateOn:     null,  // Activate an item on this event. Can be: 'click', 'mouseenter', ...
@@ -72,14 +72,14 @@ mod.directive('sly', function($log) {
     activeClass:   'active',  // Class for active items and pages.
     disabledClass: 'disabled' // Class for disabled navigation elements.
   };
-  
+
   return {
     restrict: 'E',
     scope: {
       options: '='
     },
     replace: true,
-    template: '<div class="angular-sly" ng-transclude></div>',
+    template: '<div class="angular-sly"><div class="angular-sly-slides clearfix" ng-transclude></div></div>',
     transclude: true,
     controller: function($scope) {
       $log.info('Sly Controller', $scope);
