@@ -86,6 +86,8 @@ mod.directive('sly', function($log) {
       $log.debug('Link Sly', attrs);
       var options = angular.copy(defaults);
       angular.extend(options, scope.options);
+      var $wrap = element.parent();
+      options.scrollBar = $wrap.find('.angular-sly-slide');
       element.sly(options);
       angular.element(window).resize(function() {
         element.sly('reload');
@@ -106,5 +108,14 @@ mod.directive('slySlide', function() {
     transclude: true,
     link: function() {
     }
+  };
+});
+
+mod.directive('slyScroll', function() {
+  return {
+    restrict: 'EC',
+    replace: true,
+    template: '<div class="angular-sly-scroll"><div class="angular-sly-handle"></div></div>',
+    transclude: false
   };
 });

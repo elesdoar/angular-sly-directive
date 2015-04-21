@@ -79,7 +79,7 @@ mod.directive('sly', function($log) {
       options: '='
     },
     replace: true,
-    template: '<div class="angular-sly"><div class="angular-sly-slides clearfix" ng-transclude></div></div>',
+    template: '<sly-scroll /><div class="angular-sly"><div class="angular-sly-slides clearfix" ng-transclude></div></div>',
     transclude: true,
     controller: function($scope) {
       $log.info('Sly Controller', $scope);
@@ -107,6 +107,19 @@ mod.directive('slySlide', function() {
     template: '<div class="angular-sly-slide" ng-transclude></div>',
     transclude: true,
     link: function() {
+    }
+  };
+});
+
+mod.directive('slyScroll', function() {
+  return {
+    restrict: 'EC',
+    scope: {},
+    replace: true,
+    template: '<div class="angular-sly-scroll"><div class="angular-sly-handle"></div></div>',
+    transclude: false,
+    link: function() {
+
     }
   };
 });

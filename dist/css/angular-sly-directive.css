@@ -13,3 +13,22 @@
   height: 100%;
   min-width: 300px;
 }
+.angular-sly-scroll {
+  background: #CCC;
+  line-height: 0;
+}
+.angular-sly-scroll .angular-sly-handle {
+  background: #292a33;
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+}
+.angular-sly-scroll.horizontal {
+  height: 2px;
+  margin: 0 0 1em;
+}
+.angular-sly-scroll.vertical {
+  width: 2px;
+  position: absolute;
+  right: 10px;
+}

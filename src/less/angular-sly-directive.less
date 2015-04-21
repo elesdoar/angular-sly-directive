@@ -15,3 +15,26 @@
     }
   }
 }
+
+.angular-sly-scroll {
+  background: #CCC;
+  line-height: 0;
+
+  .angular-sly-handle {
+    background: #292a33;
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+  }
+
+  &.horizontal {
+    height: 2px;
+    margin: 0 0 1em;
+  }
+
+  &.vertical {
+    width: 2px;
+    position: absolute;
+    right: 10px;
+  }
+}
