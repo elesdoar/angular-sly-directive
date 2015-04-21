@@ -2,7 +2,7 @@
 
 var mod = angular.module('angular-sly-directive', []);
 
-mod.directive('sly', function($log) {
+mod.directive('sly', function($timeout, $log) {
   var defaults = {
     horizontal: false, // Switch to horizontal mode.
 
@@ -80,18 +80,43 @@ mod.directive('sly', function($log) {
     template: '<div class="angular-sly"><div class="angular-sly-slides clearfix" ng-transclude></div></div>',
     transclude: true,
     controller: function($scope) {
+      angular.extend($scope, {
+        reload: function() {
+          if(angular.isDefined($scope.element)) {
+            $scope.element.sly('reload');
+          }
+        }
+      });
       $log.info('Sly Controller', $scope);
     },
-    link: function(scope, element, attrs) {
-      $log.debug('Link Sly', attrs);
+    link: function(scope, element) {
+      scope.element = element;
       var options = angular.copy(defaults);
       angular.extend(options, scope.options);
+      options.scrollSource = options.scrollSource === null? element:options.scrollSource;
+      options.dragSource = options.dragSource === null? element:options.dragSource;
+
       var $wrap = element.parent();
-      options.scrollBar = $wrap.find('.angular-sly-scroll');
+      var scrollBar = $wrap.find('.angular-sly-scroll');
+      if(scrollBar.size() > 0) {
+        scrollBar.addClass(options.horizontal? 'horizontal':'vertical');
+        options.scrollBar = scrollBar;
+      }
+
+      // Init Sly
       element.sly(options);
+
+      // Resize window event.
       angular.element(window).resize(function() {
         element.sly('reload');
       });
+
+      // On load content.
+      $timeout(function(){
+        element.sly('reload');
+      }, 500);
+
+      scope.$parent.reloadSly = scope.reload;
     }
   };
 });

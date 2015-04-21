@@ -25,7 +25,7 @@
 }
 .angular-sly-scroll.horizontal {
   height: 2px;
-  margin: 0 0 1em;
+  margin: 0.4em 0 0.4em 0;
 }
 .angular-sly-scroll.vertical {
   width: 2px;
