@@ -1,4 +1,4 @@
-/*! angular-sly-directive - v0.1.0 - 2015-04-20 */
+/*! angular-sly-directive - v0.1.0 - 2015-04-21 */
 
 'use strict';
 
@@ -89,6 +89,9 @@ mod.directive('sly', function($log) {
       var options = angular.copy(defaults);
       angular.extend(options, scope.options);
       element.sly(options);
+      angular.element(window).resize(function() {
+        element.sly('reload');
+      });
     }
   };
 });

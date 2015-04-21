@@ -18,6 +18,7 @@
     "trailing": true,
     "smarttabs": true,
     "white": true,
+    "browser": true,
     "jquery": true,
     "predef": ["angular", "define", "angularAMD", "videojs", "noty"]
 }

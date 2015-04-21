@@ -87,6 +87,9 @@ mod.directive('sly', function($log) {
       var options = angular.copy(defaults);
       angular.extend(options, scope.options);
       element.sly(options);
+      angular.element(window).resize(function() {
+        element.sly('reload');
+      });
     }
   };
 });
