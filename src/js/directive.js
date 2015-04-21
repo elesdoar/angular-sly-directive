@@ -87,7 +87,7 @@ mod.directive('sly', function($log) {
       var options = angular.copy(defaults);
       angular.extend(options, scope.options);
       var $wrap = element.parent();
-      options.scrollBar = $wrap.find('.angular-sly-slide');
+      options.scrollBar = $wrap.find('.angular-sly-scroll');
       element.sly(options);
       angular.element(window).resize(function() {
         element.sly('reload');
