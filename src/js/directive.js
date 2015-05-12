@@ -85,6 +85,11 @@ mod.directive('sly', function($timeout, $log) {
           if(angular.isDefined($scope.element)) {
             $scope.element.sly('reload');
           }
+        },
+        slideTo: function(position, immediate) {
+          if(angular.isDefined($scope.element)) {
+            $scope.element.sly('slideTo', position, immediate);
+          }
         }
       });
       $log.info('Sly Controller', $scope);
@@ -117,6 +122,7 @@ mod.directive('sly', function($timeout, $log) {
       }, 500);
 
       scope.$parent.reloadSly = scope.reload;
+      scope.$parent.slideTo = scope.slideTo;
     }
   };
 });
