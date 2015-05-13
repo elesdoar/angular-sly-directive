@@ -92,6 +92,21 @@ mod.directive('sly', function($timeout, $log) {
           if(angular.isDefined($scope.element)) {
             $scope.element.sly('slideTo', position, immediate);
           }
+        },
+        toStart: function(position, immediate) {
+          if(angular.isDefined($scope.element)) {
+            $scope.element.sly('toStart', position, immediate);
+          }
+        },
+        toCenter: function(position, immediate) {
+          if(angular.isDefined($scope.element)) {
+            $scope.element.sly('toCenter', position, immediate);
+          }
+        },
+        toEnd: function(position, immediate) {
+          if(angular.isDefined($scope.element)) {
+            $scope.element.sly('toEnd', position, immediate);
+          }
         }
       });
       $log.info('Sly Controller', $scope);
@@ -125,6 +140,9 @@ mod.directive('sly', function($timeout, $log) {
 
       scope.$parent.reloadSly = scope.reload;
       scope.$parent.slideTo = scope.slideTo;
+      scope.$parent.toStart = scope.toStart;
+      scope.$parent.toCenter = scope.toCenter;
+      scope.$parent.toEnd = scope.toEnd;
     }
   };
 });
