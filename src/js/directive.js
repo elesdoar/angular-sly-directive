@@ -118,9 +118,15 @@ mod.directive('sly', function($timeout, $log) {
 
       var $wrap = element.parent();
       var scrollBar = $wrap.find('.angular-sly-scroll');
+      var controls = $wrap.find('.angular-sly-controls');
       if(scrollBar.size() > 0) {
         scrollBar.addClass(options.horizontal? 'horizontal':'vertical');
         options.scrollBar = scrollBar;
+      }
+
+      if(controls.size() > 0) {
+        options.prev = controls.find('.angular-sly-prev');
+        options.next = controls.find('.angular-sly-next');
       }
 
       // Init Sly
@@ -165,6 +171,32 @@ mod.directive('slyScroll', function() {
     restrict: 'EC',
     replace: true,
     template: '<div class="angular-sly-scroll"><div class="angular-sly-handle"></div></div>',
+    transclude: false
+  };
+});
+
+
+mod.directive('slyControls', function() {
+  return {
+    restrict: 'EC',
+    scope: {
+      iconClass: '@',
+      prevClass: '@',
+      nextClass: '@',
+      containerClass: '@'
+    },
+    replace: true,
+    template:
+      '<div class="angular-sly-controls clearfix">' +
+        '<div ng-class="containerClass">' +
+          '<a href="javascript:void(0)" class="angular-sly-prev">' +
+            '<i class="fa fa-chevron-circle-left" ng-class="[iconClass, prevClass]"></i>' +
+          '</a>' +
+          '<a href="javascript:void(0)" class="angular-sly-next">' +
+            '<i class="fa fa-chevron-circle-right" ng-class="[iconClass, nextClass]"></i>' +
+          '</a>' +
+        '</div>' +
+      '</div>',
     transclude: false
   };
 });
