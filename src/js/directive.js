@@ -190,13 +190,17 @@ mod.directive('slyControls', function() {
       '<div class="angular-sly-controls clearfix">' +
         '<div ng-class="containerClass">' +
           '<a href="javascript:void(0)" class="angular-sly-prev">' +
-            '<i class="fa fa-chevron-circle-left" ng-class="[iconClass, prevClass]"></i>' +
+            '<i class="fa" ng-class="[iconClass, prevClass]"></i>' +
           '</a>' +
           '<a href="javascript:void(0)" class="angular-sly-next">' +
-            '<i class="fa fa-chevron-circle-right" ng-class="[iconClass, nextClass]"></i>' +
+            '<i class="fa" ng-class="[iconClass, nextClass]"></i>' +
           '</a>' +
         '</div>' +
       '</div>',
-    transclude: false
+    transclude: false,
+    link: function(scope) {
+      scope.prevClass = scope.prevClass || 'fa-chevron-circle-left';
+      scope.prevClass = scope.nextClass || 'fa-chevron-circle-right';
+    }
   };
 });
