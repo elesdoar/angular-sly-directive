@@ -200,7 +200,7 @@ mod.directive('slyControls', function() {
     transclude: false,
     link: function(scope) {
       scope.prevClass = scope.prevClass || 'fa-chevron-circle-left';
-      scope.prevClass = scope.nextClass || 'fa-chevron-circle-right';
+      scope.nextClass = scope.nextClass || 'fa-chevron-circle-right';
     }
   };
 });

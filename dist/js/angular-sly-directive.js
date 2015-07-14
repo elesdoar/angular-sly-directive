@@ -1,4 +1,4 @@
-/*! angular-sly-directive - v0.1.0 - 2015-07-13 */
+/*! angular-sly-directive - v0.1.0 - 2015-07-14 */
 
 'use strict';
 
@@ -202,7 +202,7 @@ mod.directive('slyControls', function() {
     transclude: false,
     link: function(scope) {
       scope.prevClass = scope.prevClass || 'fa-chevron-circle-left';
-      scope.prevClass = scope.nextClass || 'fa-chevron-circle-right';
+      scope.nextClass = scope.nextClass || 'fa-chevron-circle-right';
     }
   };
 });
