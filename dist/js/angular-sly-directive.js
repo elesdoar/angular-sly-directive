@@ -1,4 +1,4 @@
-/*! angular-sly-directive - v0.1.0 - 2015-07-14 */
+/*! angular-sly-directive - v0.1.0 - 2015-07-23 */
 
 'use strict';
 
@@ -76,7 +76,8 @@ mod.directive('sly', function($timeout, $log) {
   return {
     restrict: 'E',
     scope: {
-      options: '='
+      options: '=',
+      change: '&'
     },
     replace: true,
     template: '<div class="angular-sly"><div class="angular-sly-slides clearfix" ng-transclude></div></div>',
@@ -143,6 +144,16 @@ mod.directive('sly', function($timeout, $log) {
       $timeout(function(){
         element.sly('reload');
       }, 500);
+
+      // On change slide
+      element.sly('on', 'change', function() {
+        var index = this.getIndex(element.find('.angular-sly-slide.' + options.activeClass));
+        if(angular.isDefined(scope.change) && angular.isFunction(scope.change))  {
+          $timeout(function() {
+            scope.change({$activeIndex: index});
+          }, 0);
+        }
+      });
 
       scope.$parent.reloadSly = scope.reload;
       scope.$parent.slideTo = scope.slideTo;
