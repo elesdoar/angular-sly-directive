@@ -1,4 +1,4 @@
-/*! angular-sly-directive - v0.1.0 - 2015-07-23 */
+/*! angular-sly-directive - v0.1.0 - 2015-08-26 */
 
 'use strict';
 
@@ -160,6 +160,19 @@ mod.directive('sly', function($timeout, $log) {
       scope.$parent.toStart = scope.toStart;
       scope.$parent.toCenter = scope.toCenter;
       scope.$parent.toEnd = scope.toEnd;
+
+      element.on('$destroy', function() {
+        element.sly(false);
+      });
+
+      var wc = scope.$watch(function() {
+        return element.hasClass('ng-cloak');
+      }, function(val) {
+        if(!val) {
+          element.sly('reload');
+        }
+        wc();
+      });
     }
   };
 });

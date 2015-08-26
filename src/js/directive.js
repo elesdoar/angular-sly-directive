@@ -158,6 +158,19 @@ mod.directive('sly', function($timeout, $log) {
       scope.$parent.toStart = scope.toStart;
       scope.$parent.toCenter = scope.toCenter;
       scope.$parent.toEnd = scope.toEnd;
+
+      element.on('$destroy', function() {
+        element.sly(false);
+      });
+
+      var wc = scope.$watch(function() {
+        return element.hasClass('ng-cloak');
+      }, function(val) {
+        if(!val) {
+          element.sly('reload');
+        }
+        wc();
+      });
     }
   };
 });
