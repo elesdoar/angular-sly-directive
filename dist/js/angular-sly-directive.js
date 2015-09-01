@@ -1,4 +1,4 @@
-/*! angular-sly-directive - v0.1.0 - 2015-08-26 */
+/*! angular-sly-directive - v0.1.0 - 2015-09-01 */
 
 'use strict';
 
@@ -89,10 +89,16 @@ mod.directive('sly', function($timeout, $log) {
             $scope.element.sly('reload');
           }
         },
-        slideTo: function(position, immediate) {
+        slideTo: function(position, immediate, noActivate) {
           if(angular.isDefined($scope.element)) {
+            if(!noActivate) {
+              $scope.element.sly('activate', position);
+            }
             $scope.element.sly('slideTo', position, immediate);
           }
+        },
+        activate: function(index) {
+          $scope.element.sly('activate', index);
         },
         toStart: function(position, immediate) {
           if(angular.isDefined($scope.element)) {
@@ -133,7 +139,19 @@ mod.directive('sly', function($timeout, $log) {
       }
 
       // Init Sly
-      element.sly(options);
+      $timeout(function(){
+        element.sly(options);
+
+        // On change slide
+        element.sly('on', 'change', function() {
+          var index = this.getIndex(element.find('.angular-sly-slide.' + options.activeClass));
+          if(angular.isDefined(scope.change) && angular.isFunction(scope.change))  {
+            $timeout(function() {
+              scope.change({$activeIndex: index});
+            }, 0);
+          }
+        });
+      });
 
       // Resize window event.
       angular.element(window).resize(function() {
@@ -144,16 +162,6 @@ mod.directive('sly', function($timeout, $log) {
       $timeout(function(){
         element.sly('reload');
       }, 500);
-
-      // On change slide
-      element.sly('on', 'change', function() {
-        var index = this.getIndex(element.find('.angular-sly-slide.' + options.activeClass));
-        if(angular.isDefined(scope.change) && angular.isFunction(scope.change))  {
-          $timeout(function() {
-            scope.change({$activeIndex: index});
-          }, 0);
-        }
-      });
 
       scope.$parent.reloadSly = scope.reload;
       scope.$parent.slideTo = scope.slideTo;
